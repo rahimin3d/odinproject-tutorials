@@ -1,0 +1,67 @@
+const express = require('express');
+const app = express();
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+  res.send(`
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Wildlife Photography</title>
+      <style>
+        /* Add some basic styling for the page */
+        body {
+          font-family: sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+
+        /* Make images responsive */
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        /* Add some basic styling for the bio section */
+        .bio {
+          margin-top: 20px;
+          font-size: 18px;
+        }
+
+        .bio p {
+          margin-bottom: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Wildlife Photography</h1>
+        <!-- Add some images of wildlife -->
+        <img src="/images/lion.jpg" alt="A lion in the grass">
+        <img src="/images/elephant.jpg" alt="An elephant in the water">
+        <img src="/images/giraffe.jpg" alt="A giraffe in the trees">
+
+        <!-- Add a bio section -->
+        <div class="bio">
+          <h2>About the Photographer</h2>
+          <p>I have always had a passion for wildlife and photography, and I am lucky enough to be able to combine my two loves in my work. I have traveled all over the world to capture the beauty and majesty of the natural world, and I hope that my images can inspire others to appreciate and protect these incredible creatures.</p>
+        </div>
+      </div>
+    </body>
+  </html>
+  `);
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
